@@ -7,12 +7,16 @@ interface BooksState {
 const BookList = ({
   books,
   onDelete,
+  onEdit,
 }: {
   books: BooksState[];
   onDelete: Function;
+  onEdit: Function;
 }) => {
   const renderedBooks = books.map((book: BooksState) => {
-    return <BookShow key={book.id} book={book} onDelete={onDelete} />;
+    return (
+      <BookShow key={book.id} book={book} onDelete={onDelete} onEdit={onEdit} />
+    );
   });
   return <div className="book-list">{renderedBooks}</div>;
 };
