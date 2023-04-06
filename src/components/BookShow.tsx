@@ -27,6 +27,7 @@ const BookShow = ({
   }
   return (
     <div className="book-show">
+      <img src={`https://picsum.photos/seed/${book.id}/200/200`} alt="books" />
       {content}
       <div className="actions">
         <button className="edit" onClick={handleEdit}>
