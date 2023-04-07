@@ -10,7 +10,7 @@ import BooksContext from './context/books';
 // }
 const App = () => {
   // const [books, setBooks] = useState<BooksState[]>([]);
-
+  const [counter, setCounter] = useState(0);
   // const fetchBooks = async () => {
   //   const response = await axios.get('http://localhost:3002/books');
   //   setBooks(response.data);
@@ -18,7 +18,18 @@ const App = () => {
   const { fetchBooks } = useContext(BooksContext);
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [fetchBooks]);
+
+  useEffect(() => {
+    const listener = () => {
+      console.log(counter);
+    };
+    document.body.addEventListener('click', listener);
+    const cleanUp = () => {
+      document.body.removeEventListener('click', listener);
+    };
+    return cleanUp;
+  }, [counter]);
 
   // const deleteBookById = async (id: number) => {
   //   await axios.delete(`http://localhost:3002/books/${id}`);
