@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import BooksContext from '../context/books';
 interface bookState {
   id: number;
   title: string;
@@ -11,9 +12,11 @@ const BookEdit = ({
   onSubmit: Function;
 }) => {
   const [title, setTitle] = useState(book.title);
+  const { editBookById } = useContext(BooksContext);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(book.id, title);
+    onSubmit();
+    editBookById(book.id, title);
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
